@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "nombre": "La pelotita",
+    "direccion": "Calle falsa 123"
+  },
+  {
+    "id": 2,
+    "nombre": "La raquetita",
+    "direccion": "Av. Siempreviva 742"
+  }
+]
