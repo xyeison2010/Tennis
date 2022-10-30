@@ -11,13 +11,12 @@ const FormRowInput = (props) => {
                 </Col>
                 <Col className={'col-md-9'}>
                     <Form.Control
-                        noValidate //este pa q no valide del navegador
+                        noValidate 
                         type={type}
                         required={required}
                         placeholder={placeholder}
                         value={value}
-                        onChange={(e) => handleChange(property, e.target.value)}//el evento onchange es el q permite q cada vez haya cambio dentro del input dispare una funcion
-                    //e.target.value evento de js 
+                        onChange={(e) => handleChange(property, e.target.value)}
                     />
                     {required && (
                         <Form.Control.Feedback type={"invalid"}>
