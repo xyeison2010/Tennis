@@ -57,7 +57,7 @@ const Torneo = () => {
   const getTorneos = async () => {
     try {
       const data = await httpClient.get('/torneos');//url del backend
-      data.map((torneo) => { //.map itera y devuelve un return,esto funcion solo es para configurar hora
+      data.map((torneo) => { 
         torneo.fechaComienzo = new Date (torneo.fechaComienzo).toLocaleDateString('es-AR', dateOptions);
         return torneo;
       });
