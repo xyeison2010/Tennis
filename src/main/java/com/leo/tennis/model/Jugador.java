@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Jugador")
 public class Jugador {
-//YA SE CUAL ES EL ERROR DEBE ESTAR AKI ENTRENADOR JOIN COLUM UN 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
