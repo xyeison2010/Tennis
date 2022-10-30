@@ -25,29 +25,21 @@ const jugadorInit = {
 
 const Jugador = (props) => {
   const [jugadoresList, setJugadoresList] = useState([]);
-  const [jugadorData, setJugadorData] = useState(jugadorInit);//se inicializa con jugadorInit
+  const [jugadorData, setJugadorData] = useState(jugadorInit);
 
-  const [isEdit, setIsEdit] = useState(false);//definido como booleano
-  const [hasErrorInForm, setHasErrorInForm] = useState(false);//si hay error
+  const [isEdit, setIsEdit] = useState(false);
+  const [hasErrorInForm, setHasErrorInForm] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [errorMsg, setErrorMsg] = useState(''); // mensaje error'' definido como string
+  const [errorMsg, setErrorMsg] = useState('');
   const [entrenadoresList, setEntrenadoresList] = useState([]);
-  //del serer mock
-  //use efect con asincrono pq voy llamar una funcion async
-  //es un await de getjugadores , lo hace cuando es primera vez gracias el [] vacio
+
   useEffect(async () => {
     await getJugadores();
     await getEntrenadores();
   }, []);
-  //es necesario este array vacio ya q puede comportarse la fusion de DidMound y DidUpdate
-  //WillUnMount solo cuando hay return
-  //use effect lleva una funcion y con el corchete vacio ultimo,es como un componentDidMount()
-  //use effect lleva una funcion y con el corchete con un objeto array que actualize,es como un componentDidUpdate()
-  //use effect lleva una funcion y con el corchete vacio,pero con un return anonima,porque cierra o elimnina algo,
-  //es como un componentWillUnMount()
 
 
-  // async es la funcion asincrona y await es lo q espera su respuesta ,son promesas de js
+
   //obtener todos los jugadores de la base de datos
   const getJugadores = async () => {
     try {
@@ -61,7 +53,7 @@ const Jugador = (props) => {
   const getEntrenadores = async () => {
     try {
       const data = await httpClient.get('/entrenadores')
-      setEntrenadoresList(data); // y le enviamos el valor a nuestro hook useState
+      setEntrenadoresList(data); 
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +64,7 @@ const Jugador = (props) => {
   const agregarJugador = async () => {
     try {
       const data = await httpClient.post(`/jugadores`, { data: jugadorData });
-      setJugadoresList([...jugadoresList, data]); //estos ... puntos significa spread operator ,se usa con objetos y arrays
+      setJugadoresList([...jugadoresList, data]); 
     } catch (error) {
       console.log(error);
     }
@@ -83,9 +75,9 @@ const Jugador = (props) => {
   //comillas simples invertidas
   const editarJugador = async (id) => {
     try {
-      //mapea la lista, y verifica por el Id si devuelve el objeto original o el objeto editado
+   
       const data = await httpClient.put(`/jugadores/${id}`, { data: jugadorData });
-      //dentro de setjugadoreslist la funcion map retorna un nuevo array => () esto es como un return 
+      
       setJugadoresList(jugadoresList.map((item) => (item.id === id ? data : item)));
     } catch (error) {
       console.log(error);
@@ -96,9 +88,7 @@ const Jugador = (props) => {
   const borrarJugador = async (id) => {
     try {
       await httpClient.delete(`/jugadores/${id}`);
-      //el filter lo ponemos aca , viene de programacion funcional
-      //mientras q item.id no sea igual al id q estoy recibiendo 
-      //retorna a la lista nueva  , si es igual simplemene elimina y ya
+ 
       setJugadoresList(jugadoresList.filter((jugador) => jugador.id !== id));//devuelve una lista solo con mi condicion
     } catch (error) {
       console.log(error);
@@ -150,10 +140,8 @@ const Jugador = (props) => {
     setErrorMsg('');
   };
 
-  //importante si tengo un joingColumn en mi entity tengo q validarlo obligatorio en esta constante
-  // valida el formulario
   const handleChangeInputForm = (property, value) => {
-    value === '' ? setHasErrorInForm(true) : setHasErrorInForm(false);// Si el valor del input es vacío, entonces setea que hay un error
+    value === '' ? setHasErrorInForm(true) : setHasErrorInForm(false);
     const newData = { ...jugadorData };
     switch (property) { //... lleva todas las  variable
       case 'entrenador':
@@ -198,19 +186,19 @@ const Jugador = (props) => {
       </div>
 
       <TableJugadores
-        dataForTable={jugadoresList}//esta prop
+        dataForTable={jugadoresList}
         detail={handleDetail}
-        edit={handleEdit} //asi tmb se puede sin detallar
-        delete={(id, event) => handleDelete(id, event)}//detallada
+        edit={handleEdit}
+        delete={(id, event) => handleDelete(id, event)}
         recalcularRanking={handleRecalculateRanking}
       />
 
-      <JugadorModal //necesitamos recibirlo en el componente hijo
-        show={openModal}//openmodal arriba declarado
-        onHide={handleCloseModal}//envio al componente, por props paso una funcion
+      <JugadorModal
+        show={openModal}
+        onHide={handleCloseModal}
         isEdit={isEdit}
         handleChange={handleChangeInputForm}
-        jugador={jugadorData}//todo estas propiedades estan en props del jugadorModal
+        jugador={jugadorData}
         validated={hasErrorInForm}
         handleSubmit={handleSubmitForm}
         errorMsg={errorMsg}
