@@ -16,7 +16,7 @@ const JugadorModal = (props) => {
         validated,
         handleSubmit, 
         errorMsg, 
-        entrenadoresList,   //pasamos entrenador list  
+        entrenadoresList,     
         } = props;//esto es una destructuracion
 
 
@@ -30,12 +30,12 @@ const JugadorModal = (props) => {
          });
   
     return (
-        <Modal    //propiedades del modal dentro de react boostrap
-            show={show}//props  ,show.props seria si no destructuramos pero ya esta.
-            onHide={onHide}//y esto llegado es una funcion 
-            centered={true} //Centra el modal verticalmente en la pantalla
-            backdrop="static" //Si se hace click fuera del modal este no se cerrara
-            keyboard={false}  //Si se presiona la tecla ESC tampoco se cierra
+        <Modal    
+            show={show}
+            onHide={onHide}
+            centered={true} 
+            backdrop="static" 
+            keyboard={false}  
         >
             <Modal.Header closeButton>
                 <Modal.Title>{isEdit ? 'Editar' : 'Agregar'} Jugador</Modal.Title>
