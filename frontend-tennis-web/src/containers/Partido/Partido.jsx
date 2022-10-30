@@ -49,13 +49,11 @@ const Partido = () => {
   }, []);
 
 
-  //Verbos
-//cuando se hace joinColumns en el backend , tenemos q traerlos con get en nuestro front
-//ah y obviamente el del nuestro entity
+ 
   const getPartidos = async () => {
     try {
       const data = await httpClient.get('/partidos');//url del backend
-      data.map((partido) => { //.map itera y devuelve un return,esto funcion solo es para configurar hora
+      data.map((partido) => { 
         partido.fechaComienzo = new Date (partido.fechaComienzo).toLocaleDateString('es-AR', dateOptions);
         return partido;
       });
@@ -119,7 +117,7 @@ const Partido = () => {
     }
   };
 
-  const iniciarPartido = async(id) => {//el .filter es como el ternario pero solo devuelve una condicion
+  const iniciarPartido = async(id) => {
     const partido = partidosList.filter(element => element.id === id);
     if(partido[0].estado === 'NO_INICIADO'){
       try{
@@ -149,8 +147,7 @@ const Partido = () => {
       return null;
     }
   };
-//las validaciones ya esta en mi backend pero los profes lo pusieron aca
-//porsiacaso lo hare
+
   const validatePartido = () => {
     if (partidoData.jugadorLocal.id === partidoData.jugadorVisitante.id) {
       setErrorMsg('Los jugadores local y visitante no pueden ser iguales');
@@ -221,8 +218,7 @@ const Partido = () => {
     setPartidoData(partidoInit);
     setErrorMsg('');
   };
-//
-  // Form
+
   const handleChangeInputForm = (property, value) => {
     value === '' ? setHasErrorInForm(true) : setHasErrorInForm(false);
 
