@@ -1,7 +1,5 @@
 {
-  "name": "bf-pei-react-java-baufest-tennis",
-  "version": "1.0.0",
-  "description": "PEI - Baufest Tennis",
+
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all -l -c -s webpack:dev",
@@ -11,16 +9,9 @@
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rudemex/bf-pei-react-java-baufest-tennis.git"
-  },
-  "keywords": [
-    "Baufest",
-    "PEI",
-    "React"
+ eact"
   ],
-  "author": "Maximiliano \"Mex\" Delgado<mdelgado@baufest.com>",
+  "author": "",
   "license": "MIT",
   "prettier": {
     "semi": true,
