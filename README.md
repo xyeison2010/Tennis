@@ -1,11 +1,13 @@
-1- Implementación  de Tenis  utilizando React para Frontend y Springboot para backend.
-### Patron de Diseño : Inyeccion de dependencias mediante la anotacion @autowired.
+##  Implementación  de Tenis  utilizando React para Frontend y Springboot para backend.
+### Patrones de Diseños : Inyeccion de dependencias, Data Access Object(DAO) .
 ### Patron Arquitectonico : Data Transfer Object (DTO)
+### Persistencia base de datos : Hibernate
+### Arquitectura servicios Rest
 
 
 ### *Prerequisitos*
-##### Instalar Java y Maven (Windows)
-### *Levantar backend y compilar*
+##Instalar Java y Maven (Windows)
+##*Levantar backend y compilar*
 
 La primera vez se instalan las dependecias usadas por el proyecto, esto lo realizará el comando mvn desde un repositorio de internet todo lo necesario.
 
