@@ -2,6 +2,7 @@
 ### Patrones de Diseños : Inyeccion de dependencias, Data Access Object(DAO) .
 ### Patron Arquitectonico : Data Transfer Object (DTO)
 ### Persistencia base de datos : Hibernate
+### Pruebas Unitarias : JUnit, Mockito
 ### Arquitectura servicios Rest
 
 
