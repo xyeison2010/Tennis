@@ -22,7 +22,7 @@ mvn spring-boot:run
 
 Este comando compila, hace build y levanta spring-boot. La primera vez descargará lo necesario. Luego solamente levanta spring-boot.
 
-**NOTA: tener presente que la base de datos debe estar creada y configurada, de lo contrario el backend da error y no levanta. Ver punto 4 de sección Postgresql y pgAdmin.**
+**NOTA: tener presente que la base de datos debe estar creada y configurada, de lo contrario el backend da error y no levanta.**
 
 
 
