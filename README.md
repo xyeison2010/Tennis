@@ -1,10 +1,13 @@
-##  Implementación  de Tenis  utilizando React para Frontend y Springboot para backend.
-### Patrones de Diseños : Inyeccion de dependencias, Data Access Object(DAO) .
-### Patron Arquitectonico : Data Transfer Object (DTO)
-### Persistencia base de datos : Hibernate
-### Pruebas Unitarias : JUnit, Mockito
-### Arquitectura servicios Rest
-
+###  *Implementación  de Tenis  utilizando React para Frontend y Springboot para backend.*
+ **Patrones de Diseños : Inyeccion de dependencias, Data Access Object(DAO) .**
+ 
+ **Patron Arquitectonico : Data Transfer Object (DTO)**
+ 
+ **Persistencia base de datos : Hibernate**
+ 
+ **Pruebas Unitarias : JUnit, Mockito**
+ 
+ **Arquitectura servicios Rest**
 
 ### *Prerequisitos*
 La primera vez se instalan las dependecias usadas por el proyecto, esto lo realizará el comando mvn desde un repositorio de internet todo lo necesario.
