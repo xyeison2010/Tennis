@@ -3,7 +3,7 @@
  
  **Patron Arquitectonico : Data Transfer Object (DTO)**
  
- **Persistencia base de datos : Hibernate**
+ **Persistencia base de datos : Spring Data JPA**
  
  **Pruebas Unitarias : JUnit, Mockito**
  
