@@ -1,7 +1,7 @@
 ###  *Implementación  de Tenis  utilizando React para Frontend y Springboot para backend.*
- **Patrones de Diseños : Inyeccion de dependencias, Data Access Object(DAO) .**
+ **Patrones de Diseños : Inyeccion de dependencias, Factory, Strategy.**
  
- **Patron Arquitectonico : Data Transfer Object (DTO)**
+ **Patron Arquitectonico : Data Transfer Object (DTO), Data Access Object(DAO)  **
  
  **Persistencia base de datos : Spring Data JPA**
  
