@@ -18,10 +18,17 @@ public class EntrenadorServiceImpl implements EntrenadorService {
 	public static final String FIELD_WITH_ID = "Field with id = ";
 	public static final String DOES_NOT_EXIST = " does not exist.";
 
-	@Autowired
 	private EntrenadorRepository entrenadorRepository;
-	@Autowired
+	
 	private EntrenadorMapper entrenadorMapper;
+
+	
+	@Autowired
+	public EntrenadorServiceImpl(EntrenadorRepository entrenadorRepository, EntrenadorMapper entrenadorMapper) {
+	
+		this.entrenadorRepository = entrenadorRepository;
+		this.entrenadorMapper = entrenadorMapper;
+	}
 
 	@Override
 	public List<EntrenadorDTO> listAll() {
