@@ -30,11 +30,22 @@ public class TorneoServiceImpl implements TorneoService{
     private static final String PLAYER_DUPLICATED = "Los jugadores agregados deben ser distintos.";
     private static final String INVALID_DATE = "La fecha/hora de inicio debe ser mayor o igual a la fecha/hora actual.";
     private static final String INVALID_DATE_2 = "La fecha/hora de inicio no puede estar en el mismo rango de 4 horas con la misma cancha";
-	//	
-	@Autowired
 	TorneoRepository torneoRepository;
-	@Autowired
+	
 	TorneoMapper torneoMapper;
+
+	JugadorRepository jugadorRepository;
+	
+	
+	
+	@Autowired
+	 public TorneoServiceImpl(TorneoRepository torneoRepository, TorneoMapper torneoMapper,
+			JugadorRepository jugadorRepository) {
+		
+		this.torneoRepository = torneoRepository;
+		this.torneoMapper = torneoMapper;
+		this.jugadorRepository = jugadorRepository;
+	}
 	
 	
 	@Override
