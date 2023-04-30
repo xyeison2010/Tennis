@@ -28,16 +28,14 @@ public class JugadorServiceImpl implements JugadorService {
     public static final String ALREADY_EXISTS = " already exists.";
 
     
-    @Autowired
-    private JugadorRepository jugadorRepository;
-    @Autowired
+   private JugadorRepository jugadorRepository;
+   
     private  PartidoRepository partidoRepository;
-    @Autowired
+
     private JugadorMapper jugadorMapper;
 
- 
-    /*-----esto sirve solo para testear-----*/
-    
+
+    @Autowired
     public JugadorServiceImpl(JugadorRepository jugadorRepository,
                               PartidoRepository partidoRepository,
                               JugadorMapper jugadorMapper) {
@@ -45,7 +43,6 @@ public class JugadorServiceImpl implements JugadorService {
         this.partidoRepository = partidoRepository;
         this.jugadorMapper = jugadorMapper;
     }
-    /*                  */
 
     @Override
     public List<JugadorDTO> listAll() {
