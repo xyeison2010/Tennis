@@ -19,12 +19,12 @@ public class CanchaServiceImpl implements CanchaService {
     public static final String DOES_NOT_EXIST = " does not exist.";
     public static final String ALREADY_EXISTS = " already exists.";
 
-    @Autowired
+   
     private  CanchaRepository canchaRepository;
-    @Autowired
+   
     private CanchaMapper canchaMapper;
         
-    /*-----esto sirve solo para testear-----*/
+    @Autowired
     public CanchaServiceImpl(CanchaRepository canchaRepository, CanchaMapper canchaMapper) {
         this.canchaRepository = canchaRepository;
         this.canchaMapper = canchaMapper;
