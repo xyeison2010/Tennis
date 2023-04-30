@@ -38,26 +38,19 @@ public class PartidoServiceImpl implements PartidoService {
     private static final String INVALID_DATE_2 = "La fecha/hora de inicio no puede estar en el mismo rango de 4 horas con la misma cancha";
 
  
-    @Autowired
-    private  PartidoRepository partidoRepository;
-    @Autowired
+   private  PartidoRepository partidoRepository;
+    
     private  PartidoMapper partidoMapper;
        
-    /*-----esto sirve solo para testear-----*/
-    
+   
+    @Autowired
     public PartidoServiceImpl(PartidoRepository partidoRepository, PartidoMapper partidoMapper) {
         this.partidoRepository = partidoRepository;
         this.partidoMapper = partidoMapper;
     }
-    /*                  */
-    
-    //Map utilizado para guardar las descripciones y los distintos puntajes
-    //Este es un hashmap, eso significa que tiene asociado un key y un valor
-    //Por ejemplo el key SCORE_ADV tiene asociado el String Adv
-    //El key SCORE_40 tiene asociado el string 40... etc
+  
     private static final Map<Integer, String> descriptions = new HashMap<>();
 
-    //Static utilizado para guardar en el map descriptions los valores de los distintos puntajes
     static {
         descriptions.put(SCORE_ADV, "Adv");
         descriptions.put(SCORE_40, "40");
@@ -89,13 +82,7 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     private void validarJugadores(PartidoDTO partidoDto) {
-        /*Este metodo sirve para validar que los jugadores del partido sean correctos,
-        * primero carga en dos variables el jugador local y el jugador vicitante,
-        * luego verifica que sean distinto de null, es decir, existan,
-        * luego verifica en dicho if que el id del jugador local sea diferente al del visitante,
-        * si es el caso arroja una excepcion del tipo IllegalArgumentException, si sale del if padre
-        * significa que el jugador local o el jugador visitante no existen por que son null,
-        * en ese caso arroja un IllegalArgumentException*/
+ 
         JugadorDTO jugadorLocal = partidoDto.getJugadorLocal();
         JugadorDTO jugadorVisitante = partidoDto.getJugadorVisitante();
 
@@ -109,11 +96,7 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     private void validarFechaYHora(PartidoDTO partido) {
-        /*
-        * Este metodo sirve para validar la fecha y la hora del partido que recibe como parametro,
-        * en este caso carga en una variable el horario actual, y en un if compara la fecha de comienzo con
-        * el horario actual, se fija que no sea el mismo o que no sea inferior a este, caso positivo arroja un
-        * IllegalArgumentException*/
+  
         Date now = new Date();
         if (partido.getFechaComienzo().compareTo(now) < 0) {//si la fecha q escogiste es antes del dia actual ,arroja invalidacion
             throw new IllegalArgumentException(INVALID_DATE);
@@ -143,12 +126,7 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     private void validarNuevoPartido(PartidoDTO partido) {
-        /*
-        * En este metodo se valida el partido entrante por parametro,
-        * primero se fija que el partido no exista, alojando la respuesta en una variable booleana,
-        * se fija que en el partido entrante por parametro haya una Id distinta de null y verifica esa id
-        * en el repository por medio del metodo ExistById, si existe arroja una excepcion del tipo IllegalArgumentException
-        * luego llamada a los metodos validarJugadores y validarFechaYHora */
+      
         boolean exists = partido.getId() != null && partidoRepository.existsById(partido.getId());
         if (exists) {
             throw new IllegalArgumentException(PARTIDO_WITH_ID + partido.getId() + ALREADY_EXISTS);
@@ -160,19 +138,13 @@ public class PartidoServiceImpl implements PartidoService {
 
     @Override
     public PartidoDTO save(PartidoDTO partido) {
-        /*
-        * En este metodo se guarda el partido recibido por parametro, primero se llama a la funcion
-        * validarNuevoPartido, luego se convierte el partidoDTO a entidad partido y se la envia al repository
-        * al metodo save*/
+       
         this.validarNuevoPartido(partido);
         return this.partidoMapper.toDTO(partidoRepository.save(this.partidoMapper.fromDTO(partido)));
     }
 
     private void validarPartidoNoIniciado(Long id) {
-        /*
-        * En este metodo se valida el partido no iniciado, se obtiene el partido por el id recibido por parametro
-        * y se lo aloja en una variable local, luego, en un if verifica que el estado del partido sea distinto a NO_INICIADO,
-        * en caso positivo arroja una excepcion del tipo IllegalArgumentException*/
+   
         PartidoDTO partido = this.getById(id);
         if (!Estado.NO_INICIADO.equals(partido.getEstado())) {//estado del partido sea distinto a NO_INICIADO
             throw new IllegalArgumentException(PARTIDO_WITH_ID + partido.getId() + ALREADY_IN_PROGRESS);
@@ -180,11 +152,7 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     private void validarPartidoEditado(PartidoDTO partido) {
-        /*
-        * En este metodo se valida un partido recibido por parametro para poder editarlo,
-        * primero se llama al repository buscando un partido que exista con la id de dicho partido,
-        * si no existe, arroja una excepcion del tipo NoSuchElementException, caso contrario,
-        * llama al metodo validarPartidoNoIniciado, validarJugadores,validarFechaYHora*/
+      
         boolean exists = partidoRepository.existsById(partido.getId());
         if (!exists) {
             throw new NoSuchElementException(PARTIDO_WITH_ID + partido.getId() + DOES_NOT_EXIST);
@@ -197,18 +165,13 @@ public class PartidoServiceImpl implements PartidoService {
 
     @Override
     public PartidoDTO update(PartidoDTO partido) {
-        /*En este metodo se trata de editar el partido recibido por parametro, primero se llama al metodo
-        * validarPartidoEditado, luego, se transforma el DTO del partido recibido por parametro a entidad
-        * partido y se lo envia al metodo del repository save*/
+       
         this.validarPartidoEditado(partido);
         return this.partidoMapper.toDTO(partidoRepository.save(this.partidoMapper.fromDTO(partido)));
     }
 
     private void validarPartidoEliminado(Long id) {
-        /*En este metodo se valida el partido a eliminar, se recibe una Id por parametro y luego
-        * se verifica que existe llamando al metodo existById del repository mandando como parametro dicha id,
-        * en caso de no existir entraria al if que arrojaria una excepcion del tipo NoSuchElementException, luego
-        * se llama al metodo validarPartidoNoIniciado*/
+       
         boolean exists = partidoRepository.existsById(id);
         if (!exists) {
             throw new NoSuchElementException(PARTIDO_WITH_ID + id + DOES_NOT_EXIST);
