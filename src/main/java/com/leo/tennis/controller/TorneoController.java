@@ -26,9 +26,15 @@ import com.leo.tennis.service.TorneoService;
 @RequestMapping("springtennis/api/v1/torneos") 
 public class TorneoController {
 
-	@Autowired
-    private TorneoService torneoService;
+	
+    private final TorneoService torneoService;
 
+    @Autowired
+    public TorneoController(TorneoService torneoService) {
+		this.torneoService = torneoService;
+	}
+	
+	
     @GetMapping("")
     public ResponseEntity<List<TorneoDTO>> listAll() {
         return ResponseEntity.ok(torneoService.listAll());
@@ -48,34 +54,5 @@ public class TorneoController {
                 HttpStatus.CREATED);
     }
 
-/*
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<PartidoDTO> updatePartido(@PathVariable Long id, @RequestBody PartidoDTO partido) {
-        partido.setId(id);
-        PartidoDTO updatedPartido = partidoService.update(partido);
-        return ResponseEntity.ok(updatedPartido);
-    }
 
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletePartido(@PathVariable Long id) {
-        ResponseEntity<Void> response;
-        partidoService.delete(id);
-        response = new ResponseEntity<>(HttpStatus.OK);
-        return response;
-    }
-
-    @PostMapping(value = "/{id}/actions/sumar-punto")
-    public ResponseEntity<PartidoDTO> sumarPuntos(@PathVariable Long id, @RequestParam ModoJugador modoJugador) {
-        PartidoDTO partido = partidoService.sumarPuntos(id, modoJugador);
-        return new ResponseEntity<>(partido, HttpStatus.OK);
-    }
-
-    @PutMapping(value = "/{id}/actions/init")
-    public ResponseEntity<Void> initGame(@PathVariable Long id) {
-        partidoService.initGame(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-	
-	*/
 }
